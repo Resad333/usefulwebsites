@@ -1,0 +1,25 @@
+0)http://www.albahari.com
+1)http://csharp-video-tutorials.blogspot.com
+2)https://dapper-tutorial.net
+3)https://tahirnaushad.com
+4)https://angular.io
+5)https://dotnetcorecentral.com
+6)https://www.c-sharpcorner.com
+7)https://www.tutorialspoint.com
+8)https://www.tutorialsteacher.com
+9)https://www.entityframeworktutorial.net
+10)https://www.codeproject.com
+11)https://www.talkingdotnet.com
+12)https://www.rabbitmq.com
+13)https://microservices.io
+14)https://medium.com
+15)https://www.buraksenyurt.com
+16)https://www.gokhan-gokalp.com
+17)https://emrahmete.wordpress.com
+18)https://www.gencayyildiz.com   or   https://www.gencayyildiz.com/blog/
+19)http://www.bayramucuncu.com
+20)http://www.canertosuner.com
+21)https://www.injavawetrust.com
+22)http://www.java2s.com
+23)https://spring.io
+24)https://www.aspsnippets.com
