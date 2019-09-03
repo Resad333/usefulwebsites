@@ -1,0 +1,49 @@
+﻿♦ git rm <file_name> -> silinen dosyayı local repo’dan da siler
+
+♦ git log –oneline -> logları gösterir.
+♦ git log –pretty=oneline -> güzel görünüm ile logları gösterir.
+♦ git log –all –graph –decorate –oneline -> dene
+
+♦ git merge <branch_name> -> belirtilen branch ile merge eder
+♦ git merge –rebase <branch_name> -> belirtilen branch ile merge eder ve commitleri rebase eder.
+
+♦ git branch -> tüm branchleri listeler
+♦ git branch <branch_name> -> yeni branch oluşturur.
+♦ git branch -d <branch_name> -> branchi siler
+
+♦ git reset <file_name> -> yanlışlıkla add diyerek stage’e aldığım dosyayı working area’ ya geri döndürür.
+♦ git reset –hard <revId> -> o versiona dönülür.
+♦ git reset head <file_name> -> dosyayı son commit edilmiş haline geri döndürür.
+♦ git reset –hard HEAD~1 -> son comiti iptal eder ve o commitdeki değişiklikleri siler.
+♦ git reset –soft HEAD~1 -> son comiti iptal eder ve o commitdeki değişikikleri working area’ya geri alır.
+
+♦ git stash -> yapılan değişiklikleri stash’e alır.
+♦ git stash save <mesaj> -> yapılan değişiklikleri verilen mesajla beraber stash’e alır.
+♦ git stash list -> stashdeki listeleri gösterir
+♦ git stash apply <stash_name> -> ilgili stash’i geri getirir.
+
+♦ git update-index –assume-unchanged <file_name> -> Dosyayı hep bu haliyle tut.
+♦ git update-index –no-assume-unchanged <file_name> -> Kilidi açar
+
+♦ git cherry-pick <revIDs> -> Başka bir comiti şuan bulunduğum yere ekler.
+
+♦ git config –global alias.co checkout -> checkout yerine co alias olmasını sağladı
+
+Örneğin : git config –global alias.unstage ‘reset HEAD –‘
+$git unstage <file_name>
+
+♦ git symbolic-ref refs/heads/yeniisim refs/heads/ismiuzunbranch -> isme karşılık branchlerde linklemeyi sağlar.
+
+♦ git bisect start -> debugging i başlatır
+♦ git bisect good <revID> -> ilgili commitde işlerin iyi olduğunu söyleriz.
+♦ git bisect bad -> head’ de durumun kötü olduğunu söyleriz.
+
+♦ git tag -a v1.4 -m “1.4 yayınlandı” -> Etiketli olarak tag alır. checksum, kişi, tarih içerir
+♦ git tag v1.4-lw -> checksum, kişi, tarih içermez.
+
+♦ git commit –amend -> commit mesajı yanlış yazdıldığında düzeltmek için
+
+♦ git checkout — <file_name> -> commitlediğim değişiklikleri iptal eder
+
+♦ git diff master..develop -> 2 brach arasında farkları gösterir.
+♦ git diff –name-status master..develop- > 2 brach arasında sadece dosya farkları gösterir.
