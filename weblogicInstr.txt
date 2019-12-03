@@ -1,0 +1,63 @@
+          CREATE_DOMAIN
+1)..Weblogig\oracle_common\common\bin
+2) open CMD-prompt and execute config.cmd
+
+3)..Weblogic\user_projects\domains\[domain1]
+4)Basic weblogic server domain
+5)un: weblogic, pwd: weblogic1
+6)Choose appropriate DevelopmentMode and JDK
+7)Choose all AdministrationServer,NodeManager and Topology  for AdvancedConfiguration section
+8) Define credentials for NodeManager section
+9) Add managed servers on ManagedServers section
+10) Create machine(s) on Machines section
+11) managed servers can be assigned to machine on AssignServerToMachine  section
+
+        START_DOMAIN
+1) go to ..Weblogic\user_projects\domains\[domain1]
+2) open CMD-prompt and execute startWebLogic.cmd
+   'Server state changed to RUNNING' will be shown
+http://localhost:7001/console/
+
+       CONFIGURE_WEBLOGIC_WITH_ECLIPSE
+1) Add new server. if OracleWeblogic doesn't exist, go to MarketPlace and install it
+   created domain and wlserver can be Added and started by using 'Define a new server'
+
+   WebLogic home: ..Weblogic\wlserver
+
+   Domain directory: ..Weblogic\user_projects\domains\[domain1]
+
+       
+       DEPLOYMENT
+1) Right click on the project -> Run As -> Run on server
+
+      DEPLOYEMNT_TO_MANAGED_and_ADMIN_SERVERS
+1) Go to servers section and choose WebLogic
+2) Right click on [WebLogic]
+3) Choose [Properties]
+4) Expand [WebLogic]
+5) Expand [Publishing]
+6) Click [Advanced]
+7) Click [+] sign and add managed servers to deployment list
+8) go to ..Weblogic\user_projects\domains\[domain1]\bin and open CMD-prompt and execute [startManagedWebLogic.cmd server1] and enter credentials
+
+   the other managed servers can be started in this way
+   ports are different for managed servers
+
+http://localhost:7001/HelloworldwebApp/ -admin server
+http://localhost:7003/HelloworldwebApp/ -managed server1
+
+    CONFIGURE_DATASOURCE
+1) go to ..Weblogic\user_projects\domains\[domain1]\bin and open CMD-prompt and execute [startWebLogic.cmd ]  for starting adminServer
+2) http://localhost:7001/console/
+3)Go to Services->Data Sources  in Domain_Structure section and then click 'NEW' and choose 'Generic Data Source'.
+ After these specify Name[ex:jdbbcDS], JNDI Name[ex:bookstore/jdbbcDS] and Database Type[ex:MySql] then click Next and again 2 times Next.
+ Enter Database Name, Host Name, Port, Database User Name, Password and then Next.
+ Click Test Configuration tab.if it's success then click Next.
+ Choose the servers which needs to connect to db and then click Finish(above part)
+4) Click name of datasource [ex:jdbcDs] and then click Connection Pool tab and connection pool parameters might be changed.
+
+5) inside java DBUtil class DataSource is lokked up JNDI Name!
+   Context context=new InitilalContext();
+   DataSource ds=(DataSource)context.lookup("bookstore/jdbbcDS");
+https://github.com/kishanjavatrainer/BookStoreWebApp2
+  
