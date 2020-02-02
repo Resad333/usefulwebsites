@@ -49,7 +49,7 @@
  --------------------------------------------------------------------------------------------------------------------
                                  ABOUT_MVN_REPOSITORY
                                  
- 17.MavenLocalRepository: Windows: C:\Documents and Settings\{kullaniciAdi}\.m2,  C:\Users\{kullaniciAdi}\.m2
+ 17.MavenLocalRepository: Windows: C:\Documents and Settings\{userName}\.m2,  C:\Users\{userName}\.m2
                           Unix/Mac OS X:  – ~/.m2
  18.Change directory of local repo: go to settings.xml and then for example <localRepository>D:/maven_newRepo</localRepository>
  19.Maven first looks at local repo for finding jars if any dep not found then will go to central repo (http://repo1.maven.org/maven/)
@@ -82,7 +82,7 @@
        mvn install:install-file -Dfile=C:\myjar1.jar -DgroupId=com.myjarpkg -DartifactId=myjar1 -Dversion=11.2.0.3 -Dpackaging=jar
        
        After finishing this process if we look at local mvn repo then we can see:
-       [C:\Users\{kullaniciAdi}\.m2]\repository\com\myjarpkg\myjar1\11.2.0.3  is created and jar(myjar1-11.2.0.3.jar) has been added. 
+       [C:\Users\{userName}\.m2]\repository\com\myjarpkg\myjar1\11.2.0.3  is created and jar(myjar1-11.2.0.3.jar) has been added. 
        
        Appropriate dependency must be added as shown below:
        <dependency>
