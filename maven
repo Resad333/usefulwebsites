@@ -13,12 +13,13 @@
  5) go to MavenTestAplication directory
  6) mvn compile  --> all needed dependencies must be added to pom.xml before executing this command. 
                      otherwise we will encounter BUILD FAILURE. 
- 7) mvn package   --> jar is created by using this command
+ 7) mvn package   --> jar(war) is created by using this command
  8) java -cp target\MavenTestApplication-1.0-SNAPSHOT.jar resad.nagiyev.App (expl: package=resad.nagiyev, class=App) 
        --> this command should be executed in MavenTestApplication  directory because targe is inside of this.
  9) go to the directory which contains pom.xml and then the following commands can be executed
     mvn clean --> jar files and target folder are removed
  ----------------------------------------------------------------------------------------------------------------
+                             GUIDE_ABOUT_OPENING_IN_ECLIPSE
  10) mvn eclipse:eclipse --> for maven needed eclipse jars will be added to repository. Execute inside myapp folder.
  11) open eclipse and import this project
  12) 1. right click on project  then Build Path—> Configure Build Path
@@ -28,11 +29,70 @@
      5. on opened menu Name:M2_REPO, Path: c:\users\rashad\.m2\repository   then ok and build project.
      
  ------------------------------------------------------------------------------------------------------------------
- 13) Maven Plugin for Eclipse: Help–>Install New Software—>Maven
+                               Maven_Plugin_for_Eclipse
+                               
+ 13) Help–>Install New Software—>Maven
      after installation process reopen Eclipse.
  14) For using maven commands: right click on pom.xml and then [Run As]
  15) For adding dependency,plugin and so on: right click on pom.xml and then [Maven]
- 1) deployment to tomcat https://www.baeldung.com/tomcat-deploy-war.
+ 16) "Importing maven projects has encountered a problem.
+      An internal error occurred during: “Importing Maven projects”
+      An internal error occurred during: “Importing Maven projects”.
+     Unsupported IClasspathEntry kind=4"
+    Solving of Import issue:
+     1.Right click on imported project and then   
+       Maven —> disable maven nature 
+     2.Go to the project directory which contains pom.xml and then  open cmd there and execute
+       mvn eclipse:clean
+     3.Right click on imported project and then 
+       Configure —> Convert to maven project 
+ --------------------------------------------------------------------------------------------------------------------
+                                 ABOUT_MVN_REPOSITORY
+                                 
+ 17.MavenLocalRepository: Windows: C:\Documents and Settings\{kullaniciAdi}\.m2,  C:\Users\{kullaniciAdi}\.m2
+                          Unix/Mac OS X:  – ~/.m2
+ 18.Change directory of local repo: go to settings.xml and then for example <localRepository>D:/maven_newRepo</localRepository>
+ 19.Maven first looks at local repo for finding jars if any dep not found then will go to central repo (http://repo1.maven.org/maven/)
+    and after these 2 cases at least a dependency not found  then it will give error alert.
+ 20. Some jars are in the following remote repos:
+     https://home.java.net/   and   http://www.jboss.org/overview/ 
+     
+      <repositories>
+         <repository>
+             <id>java.net</id>
+             <url>https://maven.java.net/content/repositories/public/</url>
+         </repository>
+          <repository>
+            <id>JBoss repository</id>
+            <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+          </repository>
+      </repositories>
+  ----------------------------------------------------------------------------------------------------------------------
+                                   Java Project to Maven(JBoss Maven plugin)
+                  
+   21. Help–>Install New Software     then http://download.jboss.org/jbosstools/updates/stable/juno/ 
+                                      and choose only [Jboss Maven Support]
+   22. Right click on project and then  Configure –> Convert to Maven Project 
+       enable [Delete original references from project]
+       after finishing this process  all jars will be added to dependencies of pom.xml
+ ------------------------------------------------------------------------------------------------------------------------
+                                   Add Jar to Local Repository
+   23. Example how jar is added to local repo:
+   
+       mvn install:install-file -Dfile=C:\myjar1.jar -DgroupId=com.myjarpkg -DartifactId=myjar1 -Dversion=11.2.0.3 -Dpackaging=jar
+       
+       After finishing this process if we look at local mvn repo then we can see:
+       [C:\Users\{kullaniciAdi}\.m2]\repository\com\myjarpkg\myjar1\11.2.0.3  is created and jar(myjar1-11.2.0.3.jar) has been added. 
+       
+       Appropriate dependency must be added as shown below:
+       <dependency>
+            <groupId>com.myjarpkg</groupId>
+            <artifactId>myjar1</artifactId>
+            <version>11.2.0.3</version>
+       </dependency>
+    ------------------------------------------------------------------------------------------------------------------------
+                                  Useful_link_for_deployment_guide
+ 24) deployment to tomcat https://www.baeldung.com/tomcat-deploy-war.
  
     
                                                           
