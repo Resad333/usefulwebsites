@@ -1,0 +1,38 @@
+1) download from http://maven.apache.org/download.cgi
+2) add environment variables:
+   M2_HOME --> for example C:\Program Files\Apache Software Foundation\apache-maven-3.0.4-bin\apache-maven-3.0.4
+   M2   --> %M2_HOME%\bin
+   %M2% must be added to the end of the path variable
+   note: Java path must be added if not added.
+ 3) mvn –version   can be used for checking.
+ 4) mkdir myapp
+    cd myapp
+    mvn archetype:generate   then choose appopriate template (expl:webapp-j2ee14 is for web), 
+                              choose version and enter, groupId:resad.nagiyev, 
+                              artifactId: MavenTestApplication, version : 1.0 -SNAPSHOT 
+ 5) go to MavenTestAplication directory
+ 6) mvn compile  --> all needed dependencies must be added to pom.xml before executing this command. 
+                     otherwise we will encounter BUILD FAILURE. 
+ 7) mvn package   --> jar is created by using this command
+ 8) java -cp target\MavenTestApplication-1.0-SNAPSHOT.jar resad.nagiyev.App (expl: package=resad.nagiyev, class=App) 
+       --> this command should be executed in MavenTestApplication  directory because targe is inside of this.
+ 9) go to the directory which contains pom.xml and then the following commands can be executed
+    mvn clean --> jar files and target folder are removed
+ ----------------------------------------------------------------------------------------------------------------
+ 10) mvn eclipse:eclipse --> for maven needed eclipse jars will be added to repository. Execute inside myapp folder.
+ 11) open eclipse and import this project
+ 12) 1. right click on project  then Build Path—> Configure Build Path
+     2. Java Build Path -> Libraries ->  Add Variable
+     3. New Variable ClassPath Entry -> Configure Variables
+     4. click New  on opened menu.
+     5. on opened menu Name:M2_REPO, Path: c:\users\rashad\.m2\repository   then ok and build project.
+     
+ ------------------------------------------------------------------------------------------------------------------
+ 13) Maven Plugin for Eclipse: Help–>Install New Software—>Maven
+     after installation process reopen Eclipse.
+ 14) For using maven commands: right click on pom.xml and then [Run As]
+ 15) For adding dependency,plugin and so on: right click on pom.xml and then [Maven]
+ 1) deployment to tomcat https://www.baeldung.com/tomcat-deploy-war.
+ 
+    
+                                                          
