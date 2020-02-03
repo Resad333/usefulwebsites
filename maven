@@ -93,6 +93,7 @@
     ------------------------------------------------------------------------------------------------------------------------
                                   Useful_link_for_deployment_guide
  24) deployment to tomcat https://www.baeldung.com/tomcat-deploy-war.
+ 25) deployment to weblogic https://docs.oracle.com/middleware/1213/core/MAVEN/real_app.htm#MAVEN8917
  
     
                                                           
