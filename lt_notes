@@ -1,14 +1,5 @@
-1) lt jars should be added to MR for creating mavenized project. (note: add name of jars)
-2) a jar file should be added to MR 
-   if aWebService will be used then certificate of this webservice should be added to java key store
-   ( also on my local  for completing integ part of the development process).
-3) LoadFromStream method of ld DocumentFactory class  can not create LeadDocument from stream [INVESTIGATING].(note: add sc )
-4) This JAX-RS rest api should be separate or be part of existed project? 
-   it can be hosted on the different port because this rest api will be consumed by frontend app
-   and it doesn't have dependency from existed app.
-   Is Tomcat allowed for hosting of this rest api or only OWL?
- 5) Frontend application will send 2 parameters 'userid' and 'imgid' to this api for retriving document.
- 6) Somehow ang comp should be embedded to appropriate jsp pages and 'userid' and 'imgid' should be binded to this ang comp.
+1) https://medium.com/@mohamed_larbi.chouaiar/how-to-build-your-angular-components-and-use-it-everywhere-72dea7ecc0d6
+2) https://stackoverflow.com/questions/45282825/how-to-include-angular2-4-component-in-jsp-page
    
  
 https://www.leadtools.com/help/leadtools/v20/dh/javascript/to/leadtools-web-services.html
