@@ -1,3 +1,5 @@
+0)))) https://javatutorial.net/set-java-home-windows-10
+
 1) download from http://maven.apache.org/download.cgi
 2) add environment variables:
    M2_HOME --> for example C:\Program Files\Apache Software Foundation\apache-maven-3.0.4-bin\apache-maven-3.0.4
