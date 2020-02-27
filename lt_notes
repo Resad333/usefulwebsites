@@ -10,3 +10,64 @@ https://synaptiklabs.com/posts/adding-swagger-to-a-javaee-project-javaee-series-
 
 https://stackoverflow.com/questions/11848321/how-to-use-wsimport-when-server-expects-client-certificate
 https://yazilimcorbasi.blogspot.com/2012/07/jax-ws.html
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+https://stackoverflow.com/questions/1600488/calling-javascript-function-in-iframe
+https://stackoverflow.com/questions/3672726/attach-an-event-in-a-child-iframe-to-a-handler-in-the-parent-window?noredirect=1&lq=1
+
+1)
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>ResultPage</title>
+    <script type="text/javascript">
+        function Reset() {
+            alert("I'm iframe's method!!!");
+        }
+    </script>
+</head>
+<body>
+    This is iframe's content
+    <button id="iBtn" >Reset</button>
+</body>
+</html>
+
+2)@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section Scripts {
+    <script type="text/javascript">
+
+        $(window).on('load', function () {
+
+            console.log("loaded");
+
+            document.getElementById("resultFrame").contentDocument.getElementById("iBtn").addEventListener("click", attachFunc);
+
+            function attachFunc() {
+                alert('This attachedFunc');
+            }
+        });
+
+
+
+
+        function Reset() {
+
+            //document.getElementById("resultFrame").contentWindow.Reset();
+
+            document.getElementById("resultFrame").contentDocument.getElementById("iBtn").click();
+        }
+    </script>
+}
+<div class="text-center">
+    <input type="button" onclick="Reset()" value="Reset"><br><br>
+    <iframe height="100" id="resultFrame" src="/Home/Index2"></iframe>
+</div>
+
