@@ -1,0 +1,65 @@
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading;
+using System.Linq;
+
+namespace ConsoleApp1
+{
+    public class EComponent
+    {
+        private readonly ConcurrentDictionary<string, EventWaitHandle> _processing;
+
+        public EComponent()
+        {
+            _processing = new ConcurrentDictionary<string, EventWaitHandle>();
+        }
+
+        public void Process(string id)
+        {
+
+            var handle = new EventWaitHandle(false, EventResetMode.AutoReset);
+            var isFirst = _processing.TryAdd(id, handle);
+
+            
+            Console.WriteLine($"executing-->{isFirst}" + Thread.CurrentThread.ManagedThreadId);
+            if (isFirst)
+            {
+                //execute logic
+                Thread.Sleep(TimeSpan.FromSeconds(10));
+                Console.WriteLine("executed" + Thread.CurrentThread.ManagedThreadId);
+
+                handle.Set();
+                _processing.TryRemove(id, out _);
+            }
+            else
+            {
+                if (_processing.TryGetValue(id, out handle))
+                {
+
+                    if (handle.WaitOne(TimeSpan.FromMinutes(3)))
+                    {
+
+                        //execute logic
+                        Console.WriteLine("executed on WAItOne" + Thread.CurrentThread.ManagedThreadId);
+                        Thread.Sleep(TimeSpan.FromSeconds(4));
+
+                        handle.Set();
+                        _processing.TryRemove(id, out _);
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Timeout reached");
+                        // Timeout reached
+                    }
+
+
+                }
+            }
+
+
+        }
+    }
+}
