@@ -15,7 +15,48 @@ namespace ConsoleApp1
         {
             _processing = new ConcurrentDictionary<string, EventWaitHandle>();
         }
+        private string CreateLogMessage(string message, params object[] parameters)
+        {
+            var logMessage = new StringBuilder();
 
+            logMessage.Append($"{Thread.CurrentThread.ManagedThreadId}{_delimiter}");
+
+            if (!string.IsNullOrEmpty(message))
+            {
+                logMessage.Append($"{message}{_delimiter}");
+            }
+
+            if (parameters?.Length > 0)
+            {
+                foreach (var parameter in parameters)
+                {
+                    if (parameter != null)
+                    {
+                        if (IsClassType(parameter))
+                        {
+                            var jsonSerializerSettings = new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore };
+
+                            var data = JsonConvert.SerializeObject(parameter, Formatting.None, jsonSerializerSettings);
+
+                            logMessage.Append($"{data}{_delimiter}");
+                        }
+                        else
+                        {
+                            logMessage.Append($"{parameter}{_delimiter}");
+                        }
+                    }
+                }
+            }
+
+            return logMessage.ToString();
+        }
+
+        private static bool IsClassType(object @object)
+        {
+            Type type = @object.GetType();
+
+            return !type.IsValueType && type != typeof(string);
+        
         public void Process(string id)
         {
 
