@@ -81,4 +81,48 @@ https://stackoverflow.com/questions/3672726/attach-an-event-in-a-child-iframe-to
     <input type="button" onclick="Reset()" value="Reset"><br><br>
     <iframe height="100" id="resultFrame" src="/Home/Index2"></iframe>
 </div>
+public class Insister : IIntegrationHelper
+    {
+        private IIntegrationHelper _innerHelper = null;
+
+        private int _retryAttempts = -1;
+        private int _retryDelay = -1;
+
+
+        public Insister(IIntegrationHelper innerHelper, int retryAttempts, int retryDelay)
+        {
+            _innerHelper = innerHelper;
+            _retryAttempts = retryAttempts;
+            _retryDelay = retryDelay;
+        }
+
+
+        public override IIntegrationMessage SendRequest(IIntegrationMessage request)
+        {
+
+                    int attempts = 0;
+
+                    while (true)
+                    {
+                        try
+                        {
+                            return _innerHelper.SendRequest(request);
+                        }
+                        catch
+                        {
+                            if (attempts >= _retryAttempts)
+                            {
+                                throw;
+                            }
+                            
+                            if (_retryDelay > 0)
+                            {
+                                Thread.Sleep(_retryDelay);
+                            }
+                        }
+
+                        attempts++;
+                    }
+        }
+    }
 
