@@ -1,5 +1,10 @@
 https://stackoverflow.com/questions/46146491/prevent-pushing-to-master-on-github
+
+https://developer.okta.com/docs/guides/implement-grant-type/ropassword/main/#flow-specifics [okta returns token based on usrename and password]
+https://developer.okta.com/docs/guides/configure-native-sso/main/#native-sso-flow
+
 https://github.com/cosmic-byte/flask-restplus-boilerplate/tree/master/app/main
+https://www.cameronmacleod.com/blog/better-validation-flask-marshmallow
 
 https://www.thecodebuzz.com/call-a-service-with-basic-authentication-net-core/
 
