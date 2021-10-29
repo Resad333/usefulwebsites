@@ -1,6 +1,7 @@
 https://stackoverflow.com/questions/46146491/prevent-pushing-to-master-on-github
 
 https://developer.okta.com/docs/guides/implement-grant-type/ropassword/main/#flow-specifics [okta returns token based on usrename and password]
+https://developer.okta.com/blog/2018/06/29/what-is-the-oauth2-password-grant
 https://developer.okta.com/docs/guides/configure-native-sso/main/#native-sso-flow
 
 https://github.com/cosmic-byte/flask-restplus-boilerplate/tree/master/app/main
