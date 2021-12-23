@@ -1,5 +1,12 @@
 [ https://nicd.ncl.ac.uk/blog/posts/continuous-application-deployment-with-aws-and-kubernetes/
-  https://github.com/NICD-UK/cd-on-aws-with-kube/blob/master/aws-kube-cd/buildspec.yaml ]
+  https://github.com/NICD-UK/cd-on-aws-with-kube/blob/master/aws-kube-cd/buildspec.yaml 
+  https://www.bogotobogo.com/DevOps/Terraform/Terraform-terraform-userdata.php
+  https://vsupalov.com/docker-arg-env-variable-guide/]
+  
+[https://breadcrumbscollector.tech/python-the-clean-architecture-in-2021/
+ https://realpython.com/primer-on-python-decorators/
+ https://dev.to/jorzel/persistence-and-domain-model-separation-using-sqlalchemy-orm-1hk3]
+ 
 https://stackoverflow.com/questions/46146491/prevent-pushing-to-master-on-github
 
 https://developer.okta.com/docs/guides/implement-grant-type/ropassword/main/#flow-specifics [okta returns token based on usrename and password]
