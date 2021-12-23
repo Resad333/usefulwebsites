@@ -62,7 +62,7 @@ https://stackoverflow.com/questions/3672726/attach-an-event-in-a-child-iframe-to
 </head>
 <body>
     This is iframe's content
-    <button id="iBtn" >Reset</button>
+    <button id="iBtn" >Reset </button>
 </body>
 </html>
 
