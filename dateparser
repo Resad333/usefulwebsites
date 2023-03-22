@@ -1,0 +1,23 @@
+import datetime
+ 
+# Function to convert string to datetime
+def convert(date_time: str) -> datetime:
+    list = ['%d-%m-%Y','%d/%m/%Y','%d.%m.%Y',
+            '%d-%Y-%m','%d/%Y/%m','%d.%Y.%m',
+            '%Y-%m-%d','%Y/%m/%d','%Y.%m.%d',
+            '%Y-%d-%m','%Y/%d/%m','%Y.%d.%m',
+            '%m-%d-%Y','%m/%d/%Y','%m.%d.%Y',
+            '%m-%Y-%d','%m/%Y/%d','%m.%Y.%d']
+    length = len(list)
+    for i in range(0,length):
+      try:
+        print(f"i=${i}")
+        format = list[i]
+        date_time = date_time.split(" ", 1)[0]
+        datetime_str = datetime.datetime.strptime(date_time, format)
+        return datetime_str
+      except Exception as ex:
+        if(i!=length-1):
+          continue
+        else:
+          print(f"ERROR: {ex} while parsing {date_time}")
