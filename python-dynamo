@@ -1,0 +1,9 @@
+https://github.com/aws-samples/aws-dynamodb-examples/blob/master/DynamoDB-SDK-Examples/python/WorkingWithItems/get_item.py
+https://medium.com/@luanrubensf/modeling-a-service-using-the-single-table-design-in-dynamodb-631e459fd06e
+https://www.stackbuilders.com/blog/an-introduction-to-the-single-table-design/
+https://getindata.com/blog/amazon-aws-dynamodb-single-table-design/
+https://dev.to/adrianosastre/aws-serverless-and-the-dynamodb-single-table-design-hands-on-with-cdk-v2-38d0
+
+https://medium.com/@jerome.decoster/eks-dynamodb-e95d4b08aa1e
+https://jeromedecoster.github.io/aws/eks--dynamodb/
+https://www.eksworkshop.com/docs/security/iam-roles-for-service-accounts/add_irsa/
