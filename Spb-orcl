@@ -1,0 +1,173 @@
+1. Maven Dependency
+Make sure you have the Oracle JDBC driver dependency in your pom.xml file:
+
+xml
+Copy code
+<dependency>
+    <groupId>com.oracle.database.jdbc</groupId>
+    <artifactId>ojdbc8</artifactId>
+    <version>21.1.0.0</version> <!-- replace with the appropriate version -->
+</dependency>
+2. Configuration in application.properties
+Ensure you have your Oracle database connection details in your application.properties or application.yml file. For example:
+
+properties
+Copy code
+spring.datasource.url=jdbc:oracle:thin:@//hostname:port/service_name
+spring.datasource.username=db_username
+spring.datasource.password=db_password
+spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
+Replace hostname, port, service_name, db_username, and db_password with your Oracle database server details.
+
+3. DataSource Bean Configuration
+In Spring Boot, you can configure the DataSource bean programmatically if you need more dynamic control over the connection parameters:
+
+java
+Copy code
+import javax.sql.DataSource;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+
+@Configuration
+public class DataSourceConfig {
+
+    @Value("${spring.datasource.url}")
+    private String dbUrl;
+
+    @Value("${spring.datasource.username}")
+    private String dbUsername;
+
+    @Value("${spring.datasource.password}")
+    private String dbPassword;
+
+    @Value("${spring.datasource.driver-class-name}")
+    private String dbDriverClassName;
+
+    @Bean
+    public DataSource dataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName(dbDriverClassName);
+        dataSource.setUrl(dbUrl);
+        dataSource.setUsername(dbUsername);
+        dataSource.setPassword(dbPassword);
+        return dataSource;
+    }
+}
+Explanation:
+Configuration Annotation: @Configuration indicates that this class provides Spring configuration.
+Field Injection: @Value annotations inject values from application.properties into fields (dbUrl, dbUsername, dbPassword, dbDriverClassName).
+DataSource Bean: dataSource() method creates a DriverManagerDataSource bean, sets its properties (URL, username, password, driver class), and returns it.
+Usage:
+Once configured, you can use DataSource in your Spring services or repositories like so:
+
+java
+Copy code
+@Autowired
+private DataSource dataSource;
+This setup allows Spring Boot to manage the Oracle database connection parameters efficiently and securely within your application. Adjust the application.properties (or application.yml) and the DataSourceConfig class as per your Oracle database setup and security requirements.
+
+Give me more detailed sample 
+ChatGPT
+Certainly! Let's walk through a more detailed example of configuring Oracle database connection programmatically in a Spring Boot application.
+
+Step-by-Step Guide:
+1. Maven Dependency
+First, ensure you have the Oracle JDBC driver dependency in your pom.xml:
+
+xml
+Copy code
+<dependency>
+    <groupId>com.oracle.database.jdbc</groupId>
+    <artifactId>ojdbc8</artifactId>
+    <version>21.1.0.0</version> <!-- Replace with the appropriate version -->
+</dependency>
+2. application.properties Configuration
+Add your Oracle database connection details in application.properties (or application.yml):
+
+properties
+Copy code
+# Oracle Database Configuration
+spring.datasource.url=jdbc:oracle:thin:@//hostname:port/service_name
+spring.datasource.username=db_username
+spring.datasource.password=db_password
+spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
+Replace hostname, port, service_name, db_username, and db_password with your Oracle database server details.
+
+3. DataSource Configuration Class
+Create a configuration class to define the DataSource bean programmatically:
+
+java
+Copy code
+import javax.sql.DataSource;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+
+@Configuration
+public class DataSourceConfig {
+
+    @Value("${spring.datasource.url}")
+    private String dbUrl;
+
+    @Value("${spring.datasource.username}")
+    private String dbUsername;
+
+    @Value("${spring.datasource.password}")
+    private String dbPassword;
+
+    @Value("${spring.datasource.driver-class-name}")
+    private String dbDriverClassName;
+
+    @Bean
+    public DataSource dataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName(dbDriverClassName);
+        dataSource.setUrl(dbUrl);
+        dataSource.setUsername(dbUsername);
+        dataSource.setPassword(dbPassword);
+        return dataSource;
+    }
+}
+Explanation of the DataSourceConfig class:
+Configuration Annotation: @Configuration marks this class as a configuration class for Spring.
+Field Injection: @Value annotations inject values from application.properties into fields (dbUrl, dbUsername, dbPassword, dbDriverClassName).
+Bean Method (dataSource()): This method creates a DriverManagerDataSource instance, sets its properties (URL, username, password, driver class), and returns it as a DataSource bean.
+4. Using DataSource in Your Application
+You can now use the DataSource bean in your Spring components, such as services or repositories:
+
+java
+Copy code
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Service;
+
+@Service
+public class MyDatabaseService {
+
+    private final JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    public MyDatabaseService(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+
+    public void executeQuery() {
+        // Example usage: executing a query using jdbcTemplate
+        jdbcTemplate.query(
+            "SELECT * FROM my_table",
+            (rs, rowNum) -> {
+                // Process each row here
+                return rs.getString("column_name");
+            }
+        );
+    }
+}
+In this example:
+
+Constructor Injection: DataSource is injected into the MyDatabaseService constructor using @Autowired.
+JdbcTemplate Usage: JdbcTemplate simplifies JDBC interactions and executes SQL queries against the configured DataSource.
+Summary
+This setup allows you to programmatically configure and use Oracle database connections in a Spring Boot application. Adjust the application.properties, DataSourceConfig class, and usage as per your specific Oracle database configuration and application requirements
